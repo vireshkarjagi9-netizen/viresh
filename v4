@@ -1,0 +1,34 @@
+data=[
+(["Sunny","Warm","Normal","Strong","Warm","Same"],"Yes"),
+(["Sunny","Warm","High","Strong","Warm","Same"],"Yes"),
+(["Rainy","Cold","High","Strong","Warm","Change"],"No"),
+(["Sunny","Warm","High","Strong","Cool","Change"],"Yes")]
+
+n=len(data[0][0])
+
+def find_s(D):
+    H=["0"]*n
+    for x,y in D:
+        if y=="Yes":
+            H=x.copy() if H[0]=="0" else ["?" if H[i]!=x[i] else H[i] for i in range(n)]
+    return H
+
+def candidate(D):
+    S=["0"]*n; G=[["?"]*n]
+    for x,y in D:
+        if y=="Yes":
+            for i in range(n):
+                S[i]=x[i] if S[i]=="0" else ("?" if S[i]!=x[i] else S[i])
+        else:
+            G=[g[:i]+[S[i]]+g[i+1:] for g in G for i in range(n)
+               if g[i]=="?" and x[i]!=S[i]]
+    return S,G
+
+F=find_s(data)
+S,G=candidate(data)
+
+print("Find-S Hypothesis:")
+print(F)
+print("\nCandidate Elimination:")
+print("Specific Hypothesis S:",S)
+print("General Hypotheses G:",G)
