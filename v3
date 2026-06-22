@@ -1,0 +1,38 @@
+# Predicate Logic and Knowledge Rules
+
+def can_vote(age):
+    return age >= 18
+
+def pass_exam(marks):
+    return marks >= 40
+
+def distinction(marks):
+    return marks >= 70
+
+while True:
+
+    name = input("Enter name: ")
+    age = int(input("Enter age: "))
+    marks = int(input("Enter marks: "))
+
+    print("\nKnowledge Evaluation")
+
+    if can_vote(age):
+        print(name, "can vote")
+    else:
+        print(name, "cannot vote")
+
+    if pass_exam(marks):
+        print(name, "has passed")
+    else:
+        print(name, "has failed")
+
+    if distinction(marks):
+        print(name, "got distinction")
+
+    choice = input("\nCheck another person? (y/n): ")
+
+    if choice.lower() != 'y':
+        break
+
+print("Program Ended")
