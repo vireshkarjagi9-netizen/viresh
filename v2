@@ -1,0 +1,45 @@
+def count_inversions(state):
+    arr = [x for x in state if x != 0]
+    inv = 0
+    for i in range(len(arr)):
+        for j in range(i + 1, len(arr)):
+            if arr[i] > arr[j]:
+                inv += 1
+    return inv
+
+def is_solvable(state):
+    inv = count_inversions(state)
+    return inv % 2 == 0
+
+
+def print_state(state):
+    for i in range(0, 9, 3):
+        print(state[i:i+3])
+    print()
+
+goal = [1, 2, 3,
+        4, 5, 6,
+        7, 8, 0]
+
+state1 = [1, 2, 3,
+          4, 5, 6,
+          7, 0, 8]
+
+state2 = [1, 2, 3,
+          4, 5, 6,
+          8, 7, 0]
+
+print("Goal State:")
+print_state(goal)
+print("Inversions:", count_inversions(goal))
+print("Solvable:", is_solvable(goal))
+
+print("State 1:")
+print_state(state1)
+print("Inversions:", count_inversions(state1))
+print("Solvable:", is_solvable(state1))
+
+print("State 2:")
+print_state(state2)
+print("Inversions:", count_inversions(state2))
+print("Solvable:", is_solvable(state2))
